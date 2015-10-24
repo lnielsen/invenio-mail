@@ -2,7 +2,7 @@
  Invenio-Mail v1.0.0
 =====================
 
-Invenio-Mail v1.0.0 was released on TBD, 2015.
+Invenio-Mail v1.0.0 was released on October 26, 2015.
 
 About
 -----
