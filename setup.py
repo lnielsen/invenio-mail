@@ -45,6 +45,10 @@ tests_require = [
 ]
 
 extras_require = {
+    'celery': [
+        'celery>=3.1.0',
+        'Flask-CeleryExt>=0.1.0',
+    ],
     'docs': [
         "Sphinx>=1.3",
     ],
@@ -123,6 +127,9 @@ setup(
         'invenio_base.apps': [
             'invenio_mail = invenio_mail:InvenioMail',
         ],
+        'invenio_celery.tasks': [
+            'invenio_mail = invenio_mail.tasks',
+        ]
     },
     extras_require=extras_require,
     install_requires=install_requires,

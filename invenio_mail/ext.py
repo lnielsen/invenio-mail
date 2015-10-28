@@ -31,7 +31,21 @@ import threading
 
 from flask_mail import Mail, email_dispatched
 
-PY3 = sys.version_info[0] == 3
+
+def print_email(message, app):
+    """Print mail to stream.
+
+    Signal handler for email_dispatched signal. Prints by default the output
+    to the stream specified in the constructor of InvenioMail.
+
+    :param message: Message object.
+    :param app: Flask application object.
+    """
+    invenio_mail = app.extensions['invenio-mail']
+    with invenio_mail._lock:
+        invenio_mail.stream.write(
+            "{0}\n{1}\n".format(message.as_string(), '-'*79))
+        invenio_mail.stream.flush()
 
 
 class InvenioMail(object):
@@ -56,16 +70,10 @@ class InvenioMail(object):
         if 'mail' not in app.extensions:
             Mail(app)
         if app.config.get('MAIL_SUPPRESS_SEND', False) or app.debug:
-            email_dispatched.connect(self.print_email)
+            email_dispatched.connect(print_email)
         app.extensions['invenio-mail'] = self
 
     def init_config(self, app):
         """Initialize configuration."""
         app.config.setdefault('MAIL_DEBUG', app.debug)
         app.config.setdefault('MAIL_SUPPRESS_SEND', app.debug or app.testing)
-
-    def print_email(self, message, app):
-        """Print mail to stream."""
-        with self._lock:
-            self.stream.write("{0}\n{1}\n".format(message.as_string(), '-'*79))
-            self.stream.flush()

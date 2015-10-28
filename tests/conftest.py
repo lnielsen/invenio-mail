@@ -23,64 +23,43 @@
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
 
-"""Module tests."""
+"""Pytest configuration."""
 
 from __future__ import absolute_import, print_function
 
+import os
 import sys
 
+import pytest
 from flask import Flask
-from flask_mail import Message
+from flask_celeryext import FlaskCeleryExt
+
 
 from invenio_mail import InvenioMail
 
 PY3 = sys.version_info[0] == 3
-
 if PY3:
     from io import StringIO
 else:
     from StringIO import StringIO
 
 
-def test_version():
-    """Test version import."""
-    from invenio_mail import __version__
-    assert __version__
-
-
-def test_init():
-    """Test extension initialization."""
+@pytest.fixture()
+def email_task_app(request):
+    """Flask application fixture."""
     app = Flask('testapp')
-    ext = InvenioMail(app)
-    assert 'invenio-mail' in app.extensions
+    app.config.update(
+        SQLALCHEMY_DATABASE_URI=os.environ.get(
+            'SQLALCHEMY_DATABASE_URI', 'sqlite://'
+        ),
+        CELERY_ALWAYS_EAGER=True,
+        CELERY_RESULT_BACKEND="cache",
+        CELERY_CACHE_BACKEND="memory",
+        CELERY_EAGER_PROPAGATES_EXCEPTIONS=True,
+        MAIL_SUPPRESS_SEND=True
+    )
+    FlaskCeleryExt(app)
 
-    app = Flask('testapp')
-    ext = InvenioMail()
-    assert 'invenio-mail' not in app.extensions
-    ext.init_app(app)
-    assert 'invenio-mail' in app.extensions
+    InvenioMail(app, StringIO())
 
-
-def test_print_email():
-    """Test printing of email."""
-    app = Flask('testapp')
-    app.config.update(MAIL_SUPPRESS_SEND=True)
-
-    output = StringIO()
-    InvenioMail(app, stream=output)
-
-    with app.app_context():
-        msg = Message(
-            "Test subject", sender="from@example.com",
-            recipients=["to@example.com"], body="Test Body")
-        app.extensions['mail'].send(msg)
-
-    email = output.getvalue()
-    output.close()
-
-    sep = '\r\n' if PY3 else '\n'
-
-    assert "Subject: Test subject%s" % sep in email
-    assert "From: from@example.com%s" % sep in email
-    assert "To: to@example.com%s" % sep in email
-    assert "{0}{0}Test Body".format(sep) in email
+    return app
