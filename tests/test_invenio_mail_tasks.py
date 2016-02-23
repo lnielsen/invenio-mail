@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -36,9 +36,11 @@ def test_send_message_outbox(email_task_app):
     """Test sending a message using Task module."""
     with email_task_app.app_context():
         with email_task_app.extensions['mail'].record_messages() as outbox:
-            msg = Message('Test1',
-                          sender='test1@test1.test1',
-                          recipients=['test1@test1.test1'])
+            msg = {
+                'subject': 'Test1',
+                'sender': 'test1@test1.test1',
+                'recipients': ['test1@test1.test1']
+            }
 
             send_email(msg)
 
@@ -53,9 +55,11 @@ def test_send_message_stream(email_task_app):
     """Test sending a message using Task module."""
     with email_task_app.app_context():
         with email_task_app.extensions['mail'].record_messages() as outbox:
-            msg = Message('Test2',
-                          sender='test2@test2.test2',
-                          recipients=['test2@test2.test2'])
+            msg = {
+                'subject': 'Test2',
+                'sender': 'test2@test2.test2',
+                'recipients': ['test2@test2.test2']
+            }
 
             send_email(msg)
 
