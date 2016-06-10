@@ -127,6 +127,9 @@ setup(
         'invenio_base.apps': [
             'invenio_mail = invenio_mail:InvenioMail',
         ],
+        'invenio_base.api_apps': [
+            'invenio_mail = invenio_mail:InvenioMail',
+        ],
         'invenio_celery.tasks': [
             'invenio_mail = invenio_mail.tasks',
         ]
