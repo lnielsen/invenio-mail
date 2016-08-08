@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -49,23 +49,33 @@ def print_email(message, app):
 
 
 class InvenioMail(object):
-    """Invenio-Mail extension.
-
-    Mails are only printed to the stream if ``MAIL_SUPPRESS_SEND`` is ``True``.
-
-    :param app: Flask application object.
-    :param stream: Stream to print emails to. Defaults to ``sys.stdout``.
-    """
+    """Invenio-Mail extension."""
 
     def __init__(self, app=None, stream=None):
-        """Extension initialization."""
+        """Extension initialization.
+
+        Mails are only printed to the stream if ``MAIL_SUPPRESS_SEND`` is
+        ``True``.
+
+        :param app: Flask application object.
+        :param stream: Stream to print emails to. Defaults to ``sys.stdout``.
+        """
         self.stream = stream or sys.stdout
         self._lock = threading.RLock()
         if app:
             self.init_app(app)
 
     def init_app(self, app):
-        """Flask application initialization."""
+        """Flask application initialization.
+
+        The initialization will:
+
+         * Set default values for the configuration variables.
+         * Initialise the Flask mail extension.
+         * Configure the extension to avoid the email sending in case of debug
+           or ``MAIL_SUPPRESS_SEND`` config variable set. In this case, the
+           email will be written in the stream configured in the extension.
+        """
         self.init_config(app)
         if 'mail' not in app.extensions:
             Mail(app)
