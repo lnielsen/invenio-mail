@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -31,7 +31,6 @@ printing of emails to standard output when the configuration variable
 Invenio-Mail also takes care of initializing Flask-Mail if not already
 initialized.
 
-
 First, initialize the extension:
 
 >>> from flask import Flask
@@ -41,12 +40,53 @@ First, initialize the extension:
 >>> InvenioMail(app)
 <invenio_mail.ext.InvenioMail ...>
 
-
 Next, let's send an email:
 
 >>> from flask_mail import Message
->>> msg = Message("Hello", sender='from@example.org',
-...    recipients=["to@example.com"], body='Hello, World!')
+>>> msg = Message('Hello', sender='from@example.org',
+...    recipients=['to@example.com'], body='Hello, World!')
+>>> with app.app_context():
+...     app.extensions['mail'].send(msg)
+Content-Type: text/plain; charset="utf-8"...
+
+
+Using the API
+-------------
+
+A simple API let you create a message from a template, so you just have to
+give the rights arguments to get the full message. Moreover, it can create
+a complete e-mail with both HTML and text content.
+
+To do so, you need to instantiate
+a :class:`~invenio_mail.api.TemplatedMessage` class, just like you
+would do with a standard :class:`flask_mail.Message`:
+
+>>> from invenio_mail.api import TemplatedMessage
+>>> with app.app_context():
+...    msg = TemplatedMessage(
+...         template_html='', # path to your template
+...         template_body='', # path to your template
+...         subject='Hello',
+...         sender='from@example.org',
+...         recipients=['to@example.com'],
+...         ctx={
+...             'content': 'Hello, World!',
+...             'logo': 'logo.png',
+...             'sender': 'Sender',
+...             'user': 'User',
+...         })
+
+You just need to add the templates to use and a ``ctx`` dictionnary,
+containing the values useful to fill the templates.
+
+If you ommit these 3 arguments, you will have the same result as you would
+with the standard :class:`flask_mail.Message` class.
+
+Note that you must be in the application in order to be able to render the
+templates.
+
+Once you have created a message, you can send it the standard way:
+
 >>> with app.app_context():
 ...     app.extensions['mail'].send(msg)
 Content-Type: text/plain; charset="utf-8"...
@@ -63,8 +103,8 @@ extension which needs email sending functionality:
    from flask_mail import Message
 
    def mystuff():
-       msg = Message("Hello", sender='from@example.org',
-                     recipients=["to@example.com"], body='Hello, World!')
+       msg = Message('Hello', sender='from@example.org',
+                     recipients=['to@example.com'], body='Hello, World!')
        current_app.extensions['mail'].send(msg)
 
 

@@ -29,9 +29,10 @@ from __future__ import absolute_import, print_function
 
 import os
 import sys
+from datetime import datetime
 
 import pytest
-from flask import Flask
+from flask import Blueprint, Flask
 from flask_celeryext import FlaskCeleryExt
 
 
@@ -63,3 +64,40 @@ def email_task_app(request):
     InvenioMail(app, StringIO())
 
     return app
+
+
+@pytest.fixture(scope='session')
+def email_api_app(email_task_app):
+    """Flask application fixture."""
+    email_task_app.register_blueprint(
+        Blueprint('invenio_mail', __name__, template_folder='templates')
+    )
+
+    return email_task_app
+
+
+@pytest.fixture
+def email_params():
+    return {
+        'subject': 'subject',
+        'recipients': ['recipient@inveniosoftware.com'],
+        'sender': 'sender@inveniosoftware.com',
+        'cc': 'cc@inveniosoftware.com',
+        'bcc': 'bcc@inveniosoftware.com',
+        'reply_to': 'reply_to@inveniosoftware.com',
+        'date': datetime.now(),
+        'attachments': [],
+        'charset': None,
+        'extra_headers': None,
+        'mail_options': [],
+        'rcpt_options': [],
+    }
+
+
+@pytest.fixture
+def email_ctx():
+    return {
+        'user': 'User',
+        'content': 'This a content.',
+        'sender': 'sender',
+    }
