@@ -137,8 +137,8 @@ html_theme_options = {
     'github_banner': True,
     'show_powered_by': False,
     'extra_nav_links': {
-        'invenio-mail@GitHub': 'http://github.com/inveniosoftware/invenio-mail',
-        'invenio-mail@PyPI': 'http://pypi.python.org/pypi/invenio-mail/',
+        'invenio-mail@GitHub': 'https://github.com/inveniosoftware/invenio-mail',
+        'invenio-mail@PyPI': 'https://pypi.python.org/pypi/invenio-mail/',
     }
 }
 
