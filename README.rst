@@ -46,4 +46,4 @@ Invenio mail module.
 *This is an experimental developer preview release.*
 
 * Free software: GPLv2 license
-* Documentation: https://pythonhosted.org/invenio-mail/
+* Documentation: https://invenio-mail.readthedocs.io/

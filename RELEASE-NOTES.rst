@@ -24,7 +24,7 @@ Installation
 Documentation
 -------------
 
-   http://pythonhosted.org/invenio-mail/
+   https://invenio-mail.readthedocs.io/
 
 Happy hacking and thanks for flying Invenio-Mail.
 
