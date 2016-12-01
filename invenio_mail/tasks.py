@@ -34,7 +34,7 @@ from flask_mail import Message
 
 @shared_task(base=RequestContextTask)
 def send_email(data):
-    """Celery task to send emails.
+    """Celery task for sending emails.
 
     .. warning:: Due to an incompatibility between MessagePack and Message,
                  support for attachments and dates is limited. Consult the

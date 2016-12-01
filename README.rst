@@ -40,10 +40,9 @@
 .. image:: https://img.shields.io/github/license/inveniosoftware/invenio-mail.svg
         :target: https://github.com/inveniosoftware/invenio-mail/blob/master/LICENSE
 
-
-Invenio mail module.
-
 *This is an experimental developer preview release.*
 
-* Free software: GPLv2 license
-* Documentation: https://invenio-mail.readthedocs.io/
+* Simple integration layer between Invenio and Flask-Mail.
+
+Further documentation is available on
+https://invenio-mail.readthedocs.io/

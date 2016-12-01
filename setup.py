@@ -25,10 +25,8 @@
 """Invenio mail module."""
 
 import os
-import sys
 
 from setuptools import find_packages, setup
-from setuptools.command.test import test as TestCommand
 
 readme = open('README.rst').read()
 history = open('CHANGES.rst').read()
@@ -46,8 +44,7 @@ tests_require = [
 
 extras_require = {
     'celery': [
-        'celery>=3.1.0',
-        'Flask-CeleryExt>=0.1.0',
+        'Flask-CeleryExt>=0.2.2',
     ],
     'docs': [
         "Sphinx>=1.4.2",
@@ -120,6 +117,6 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
     ],
 )

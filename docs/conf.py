@@ -22,9 +22,14 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
+"""Sphinx configuration."""
+
 from __future__ import print_function
 
 import os
+import sys
+
+import sphinx.environment
 
 # -- General configuration ------------------------------------------------
 
@@ -33,7 +38,6 @@ import os
 
 # Do not warn on external images.
 suppress_warnings = ['image.nonlocal_uri']
-
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom

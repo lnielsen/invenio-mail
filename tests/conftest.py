@@ -28,21 +28,14 @@
 from __future__ import absolute_import, print_function
 
 import os
-import sys
 from datetime import datetime
 
 import pytest
 from flask import Blueprint, Flask
 from flask_celeryext import FlaskCeleryExt
+from six import StringIO
 
-
-from invenio_mail import InvenioMail
-
-PY3 = sys.version_info[0] == 3
-if PY3:
-    from io import StringIO
-else:
-    from StringIO import StringIO
+from invenio_mail import InvenioMail, config
 
 
 @pytest.fixture(scope='session')
@@ -78,6 +71,7 @@ def email_api_app(email_task_app):
 
 @pytest.fixture
 def email_params():
+    """Email parameters fixture."""
     return {
         'subject': 'subject',
         'recipients': ['recipient@inveniosoftware.com'],
@@ -96,6 +90,7 @@ def email_params():
 
 @pytest.fixture
 def email_ctx():
+    """Email context fixture."""
     return {
         'user': 'User',
         'content': 'This a content.',
