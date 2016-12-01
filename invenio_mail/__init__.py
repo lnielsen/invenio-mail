@@ -26,7 +26,7 @@
 
 The Invenio-Mail module is a tiny wrapper around Flask-Mail that provides
 printing of emails to standard output when the configuration variable
-``MAIL_SUPPRESS_SEND`` is true.
+``MAIL_SUPPRESS_SEND`` is ``True``.
 
 Invenio-Mail also takes care of initializing Flask-Mail if not already
 initialized.
@@ -49,17 +49,14 @@ Next, let's send an email:
 ...     app.extensions['mail'].send(msg)
 Content-Type: text/plain; charset="utf-8"...
 
-
-Using the API
--------------
-
-A simple API let you create a message from a template, so you just have to
-give the rights arguments to get the full message. Moreover, it can create
+Template based messages
+-----------------------
+A simple API lets you create a message from a template, so you just have to
+give the right arguments to get the full message. Moreover, it can create
 a complete e-mail with both HTML and text content.
 
-To do so, you need to instantiate
-a :class:`~invenio_mail.api.TemplatedMessage` class, just like you
-would do with a standard :class:`flask_mail.Message`:
+First, you need to instantiate the :class:`~invenio_mail.api.TemplatedMessage`
+class, just like you would do with a standard :class:`flask_mail.Message`:
 
 >>> from invenio_mail.api import TemplatedMessage
 >>> with app.app_context():
@@ -76,16 +73,14 @@ would do with a standard :class:`flask_mail.Message`:
 ...             'user': 'User',
 ...         })
 
-You just need to add the templates to use and a ``ctx`` dictionnary,
-containing the values useful to fill the templates.
+You just need to add the templates to use and a ``ctx`` dictionary,
+containing the values useful to fill the templates. If you ommit these three
+arguments, you will have the same result as you would with the standard
+:class:`flask_mail.Message` class.
 
-If you ommit these 3 arguments, you will have the same result as you would
-with the standard :class:`flask_mail.Message` class.
-
-Note that you must be in the application in order to be able to render the
-templates.
-
-Once you have created a message, you can send it the standard way:
+Note that you must be in the application context in order to be able to render
+the templates. Once you have created a message, you can send it the standard
+way:
 
 >>> with app.app_context():
 ...     app.extensions['mail'].send(msg)

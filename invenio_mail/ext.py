@@ -75,6 +75,8 @@ class InvenioMail(object):
          * Configure the extension to avoid the email sending in case of debug
            or ``MAIL_SUPPRESS_SEND`` config variable set. In this case, the
            email will be written in the stream configured in the extension.
+
+        :param app: Flask application object.
         """
         self.init_config(app)
         if 'mail' not in app.extensions:
@@ -84,6 +86,9 @@ class InvenioMail(object):
         app.extensions['invenio-mail'] = self
 
     def init_config(self, app):
-        """Initialize configuration."""
+        """Initialize configuration.
+
+        :param app: Flask application object.
+        """
         app.config.setdefault('MAIL_DEBUG', app.debug)
         app.config.setdefault('MAIL_SUPPRESS_SEND', app.debug or app.testing)
