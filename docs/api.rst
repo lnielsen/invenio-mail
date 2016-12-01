@@ -25,6 +25,8 @@
 API Docs
 ========
 
+Extension
+---------
 .. automodule:: invenio_mail.ext
    :members:
 
