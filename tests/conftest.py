@@ -47,8 +47,8 @@ def email_task_app(request):
             'SQLALCHEMY_DATABASE_URI', 'sqlite://'
         ),
         CELERY_ALWAYS_EAGER=True,
-        CELERY_RESULT_BACKEND="cache",
-        CELERY_CACHE_BACKEND="memory",
+        CELERY_RESULT_BACKEND='cache',
+        CELERY_CACHE_BACKEND='memory',
         CELERY_EAGER_PROPAGATES_EXCEPTIONS=True,
         MAIL_SUPPRESS_SEND=True
     )

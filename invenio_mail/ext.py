@@ -85,7 +85,8 @@ class InvenioMail(object):
             email_dispatched.connect(print_email)
         app.extensions['invenio-mail'] = self
 
-    def init_config(self, app):
+    @staticmethod
+    def init_config(app):
         """Initialize configuration.
 
         :param app: Flask application object.

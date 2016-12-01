@@ -71,8 +71,8 @@ def test_print_email():
 
     with app.app_context():
         msg = Message(
-            "Test subject", sender="from@example.com",
-            recipients=["to@example.com"], body="Test Body")
+            'Test subject', sender='from@example.com',
+            recipients=['to@example.com'], body='Test Body')
         app.extensions['mail'].send(msg)
 
     email = output.getvalue()
@@ -80,7 +80,7 @@ def test_print_email():
 
     sep = '\r\n' if PY3 else '\n'
 
-    assert "Subject: Test subject%s" % sep in email
-    assert "From: from@example.com%s" % sep in email
-    assert "To: to@example.com%s" % sep in email
-    assert "{0}{0}Test Body".format(sep) in email
+    assert 'Subject: Test subject{0}'.format(sep) in email
+    assert 'From: from@example.com{0}'.format(sep) in email
+    assert 'To: to@example.com{0}'.format(sep) in email
+    assert '{0}{0}Test Body'.format(sep) in email
