@@ -22,7 +22,6 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-
 root = true
 
 [*]
@@ -39,6 +38,7 @@ indent_size = 4
 known_first_party = invenio_mail
 multi_line_output = 2
 default_section = THIRDPARTY
+skip = .eggs
 
 # RST files (used by sphinx)
 [*.rst]
