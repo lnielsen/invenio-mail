@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015, 2016 CERN.
+# Copyright (C) 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -22,12 +22,10 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Version information for Invenio-Mail.
+"""Configuration for Invenio-Mail.
 
-This file is imported by ``invenio_mail.__init__``,
-and parsed by ``setup.py``.
+Invenio-Mail is a tiny integration layer between Invenio and Flask-Mail, so
+please refer to
+`Flask-Mail <https://pythonhosted.org/Flask-Mail/#configuring-flask-mail>`_'s
+list of configuration variables.
 """
-
-from __future__ import absolute_import, print_function
-
-__version__ = '1.0.0a6.dev20160927'

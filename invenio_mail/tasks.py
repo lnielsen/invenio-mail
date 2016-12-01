@@ -36,9 +36,11 @@ from flask_mail import Message
 def send_email(data):
     """Celery task to send emails.
 
-    .. warning:: Due to an incompatibility between MessagePack and Message,
-                 support for attachments and dates is limited. Consult the
-                 tests for details.
+    .. warning::
+
+       Due to an incompatibility between MessagePack serialization and Message,
+       support for attachments and dates is limited. Consult the tests for
+       details.
     """
     msg = Message()
     msg.__dict__.update(data)
