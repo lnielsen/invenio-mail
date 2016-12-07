@@ -47,6 +47,7 @@ extras_require = {
         'Flask-CeleryExt>=0.2.2',
     ],
     'docs': [
+        'Flask-CeleryExt>=0.2.2',
         'Sphinx>=1.4.2',
     ],
     'tests': tests_require,
