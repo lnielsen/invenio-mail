@@ -40,9 +40,7 @@
 .. image:: https://img.shields.io/github/license/inveniosoftware/invenio-mail.svg
         :target: https://github.com/inveniosoftware/invenio-mail/blob/master/LICENSE
 
-*This is an experimental developer preview release.*
-
-* Simple integration layer between Invenio and Flask-Mail.
+Invenio-Mail is an integration layer between Invenio and Flask-Mail.
 
 Further documentation is available on
 https://invenio-mail.readthedocs.io/

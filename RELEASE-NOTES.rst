@@ -7,9 +7,7 @@ Invenio-Mail v1.0.0b1 was released on December 5, 2016.
 About
 -----
 
-Invenio mail module.
-
-*This is an experimental developer preview release.*
+Invenio-Mail is an integration layer between Invenio and Flask-Mail.
 
 What's new
 ----------
