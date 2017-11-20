@@ -32,7 +32,7 @@ Extension
 
 Tasks
 -----
-.. autotask:: invenio_mail.tasks.send_email
+.. autotask:: invenio_mail.tasks.send_email(data)
 
 Templated Messages
 ------------------
