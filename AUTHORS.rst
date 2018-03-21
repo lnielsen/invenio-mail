@@ -5,14 +5,16 @@
     Invenio is free software; you can redistribute it and/or modify it
     under the terms of the MIT License; see LICENSE file for more details.
 
-Authors
-=======
+Contributors
+============
 
-Invenio mail module.
-
-- Jacopo Notarstefano <jacopo.notarstefano@gmail.com>
-- Javier Delgado <javier.delgado.fernandez@cern.ch>
-- Jiri Kuncar <jiri.kuncar@cern.ch>
-- Lars Holm Nielsen <lars.holm.nielsen@cern.ch>
-- Rémi Ducceschi <remi.ducceschi@gmail.com>
-- Sami Hiltunen <Sami Hiltunen sami.mikael.hiltunen@cern.ch>
+- Alizee Pace
+- Dinos Kousidis
+- Jacopo Notarstefano
+- Javier Delgado
+- Jiri Kuncar
+- Krzysztof Nowak
+- Lars Holm Nielsen
+- Rémi Ducceschi
+- Sami Hiltunen
+- Tibor Simko
