@@ -9,6 +9,9 @@
  Invenio-Mail
 ==============
 
+.. image:: https://img.shields.io/github/license/inveniosoftware/invenio-mail.svg
+        :target: https://github.com/inveniosoftware/invenio-mail/blob/master/LICENSE
+
 .. image:: https://img.shields.io/travis/inveniosoftware/invenio-mail.svg
         :target: https://travis-ci.org/inveniosoftware/invenio-mail
 
